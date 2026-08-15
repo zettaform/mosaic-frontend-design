@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <!-- Favicon for all devices and versions -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="192x192" href="/android-chrome-192x192.png" />
+    <link rel="icon" type="image/png" sizes="512x512" href="/android-chrome-512x512.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Walter+Turncoat&display=swap" rel="stylesheet">
+    <title>My Mail Gram</title>
+    <script>
+      // Check for theme preference, default to light mode to avoid dark blue screen
+      const savedTheme = localStorage.getItem('ui-theme') || localStorage.getItem('theme') || 'light';
+      const isDark = savedTheme === 'dark' || (savedTheme === 'system' && window.matchMedia('(prefers-color-scheme: dark)').matches);
+      
+      if (isDark) {
+        document.querySelector('html').classList.add('dark');
+        document.querySelector('html').style.colorScheme = 'dark';
+      } else {
+        document.querySelector('html').classList.remove('dark');
+        document.querySelector('html').style.colorScheme = 'light';
+      }
+    </script>
+
+    <!-- Start of Crisp Widget Code -->
+    <script type="text/javascript">
+      window.$crisp = [];
+      window.CRISP_WEBSITE_ID = "cf7ba3dd-5885-4c44-9be3-47a73f86c463";
+      (function() {
+        d = document;
+        s = d.createElement("script");
+        s.src = "https://client.crisp.chat/l.js";
+        s.async = 1;
+        if (document.readyState === 'loading') {
+          document.addEventListener('DOMContentLoaded', function() {
+            d.getElementsByTagName("head")[0].appendChild(s);
+          });
+        } else {
+          d.getElementsByTagName("head")[0].appendChild(s);
+        }
+      })();
+    </script>
+    <!-- End of Crisp Widget Code -->
+
+  </head>
+  <body class="font-inter antialiased bg-slate-50 dark:bg-slate-900 text-slate-600 dark:text-slate-400 overflow-x-hidden">
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <script>
+        if (localStorage.getItem('sidebar-expanded') == 'true') {
+            document.querySelector('body').classList.add('sidebar-expanded');
+        } else {
+            document.querySelector('body').classList.remove('sidebar-expanded');
+        }
+    </script>   
+    <div id="root" class="min-h-screen bg-slate-50 dark:bg-slate-900"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>

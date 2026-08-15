@@ -1,0 +1,148 @@
+/* Tabulator inside Snowflake query page — aligns with Tailwind slate shell */
+.snowflake-tabulator-host .tabulator {
+  font-size: 0.8125rem;
+  border-radius: 0.5rem;
+  border: 1px solid rgb(226 232 240);
+  background: #fff;
+}
+
+.snowflake-tabulator-host .tabulator .tabulator-header {
+  font-weight: 600;
+  color: rgb(71 85 105);
+  border-bottom: 1px solid rgb(226 232 240);
+}
+
+.snowflake-tabulator-host .tabulator .tabulator-header .tabulator-col {
+  background: rgb(248 250 252);
+}
+
+.snowflake-tabulator-host .tabulator .tabulator-row.tabulator-row-even {
+  background-color: rgb(248 250 252 / 0.5);
+}
+
+.snowflake-tabulator-host .tabulator .tabulator-footer {
+  border-top: 1px solid rgb(226 232 240);
+  background: rgb(248 250 252);
+  color: rgb(71 85 105);
+}
+
+.dark .snowflake-tabulator-host .tabulator {
+  border-color: rgb(51 65 85);
+  background: rgb(15 23 42);
+  color: rgb(226 232 240);
+}
+
+.dark .snowflake-tabulator-host .tabulator .tabulator-header {
+  color: rgb(203 213 225);
+  border-bottom-color: rgb(51 65 85);
+}
+
+.dark .snowflake-tabulator-host .tabulator .tabulator-header .tabulator-col {
+  background: rgb(30 41 59);
+}
+
+.dark .snowflake-tabulator-host .tabulator .tabulator-row.tabulator-row-even {
+  background-color: rgb(30 41 59 / 0.6);
+}
+
+.dark .snowflake-tabulator-host .tabulator .tabulator-cell {
+  border-right-color: rgb(51 65 85);
+  border-bottom-color: rgb(51 65 85);
+}
+
+.dark .snowflake-tabulator-host .tabulator .tabulator-footer {
+  border-top-color: rgb(51 65 85);
+  background: rgb(30 41 59);
+  color: rgb(203 213 225);
+}
+
+.snowflake-tabulator-host .tabulator input[type='search'],
+.snowflake-tabulator-host .tabulator input[type='text'] {
+  border-radius: 0.25rem;
+  border: 1px solid rgb(203 213 225);
+  padding: 0.125rem 0.375rem;
+  font-size: 0.75rem;
+}
+
+.dark .snowflake-tabulator-host .tabulator input[type='search'],
+.dark .snowflake-tabulator-host .tabulator input[type='text'] {
+  background: rgb(15 23 42);
+  border-color: rgb(71 85 105);
+  color: rgb(226 232 240);
+}
+
+.snowflake-tabulator-host .tabulator .tabulator-header .sf-th-sort {
+  border: none;
+  background: transparent;
+  width: 100%;
+  font: inherit;
+  cursor: pointer;
+}
+
+/* Compact BIO column rendering */
+.snowflake-tabulator-host .tabulator-cell .sf-bio-cell {
+  width: 100%;
+  max-width: 100%;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2; /* keep rows compact */
+  overflow: hidden;
+  white-space: normal;
+  line-height: 1.25rem;
+  word-break: break-word;
+  overflow-wrap: anywhere;
+  outline: none;
+}
+
+.snowflake-tabulator-host .tabulator-cell .sf-bio-cell:focus-visible {
+  outline: 2px solid rgb(99 102 241 / 0.6); /* indigo focus ring */
+  outline-offset: 2px;
+  border-radius: 0.375rem;
+}
+
+/* Instant hover "modal" popover for BIO */
+.sf-bio-hover-modal {
+  position: fixed;
+  z-index: 9999;
+  display: none;
+  pointer-events: none; /* moving cursor off the cell should hide instantly */
+
+  background: #ffffff;
+  color: rgb(15 23 42);
+  border: 1px solid rgb(226 232 240);
+  border-radius: 10px;
+  box-shadow: 0 10px 30px rgba(2, 6, 23, 0.12);
+  padding: 12px 14px;
+  max-width: calc(100vw - 24px);
+  max-height: 240px;
+}
+
+.dark .sf-bio-hover-modal {
+  background: rgb(15 23 42);
+  color: rgb(226 232 240);
+  border-color: rgb(51 65 85);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+}
+
+.sf-bio-hover-modal-title {
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+  color: rgb(71 85 105);
+}
+
+.dark .sf-bio-hover-modal-title {
+  color: rgb(203 213 225);
+}
+
+.sf-bio-hover-modal-content {
+  font-size: 13px;
+  line-height: 1.35rem;
+  white-space: pre-wrap;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 8;
+}

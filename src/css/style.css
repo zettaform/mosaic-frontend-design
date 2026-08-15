@@ -1,0 +1,1003 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=fallback');
+
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+
+/* Additional styles */
+@import 'additional-styles/utility-patterns.css';
+@import 'additional-styles/flatpickr.css';
+@import 'enhanced-chat.css';
+
+@import 'tailwindcss/utilities';
+
+/* Enterprise-grade sidebar icon theming system */
+:root {
+  /* Light mode: icons sit on white/slate surfaces — never use white fills here */
+  --icon-color-default: #64748b; /* slate-500 */
+  --icon-color-active: #ffffff; /* on indigo active pill */
+  --icon-color-hover: #334155; /* slate-700 */
+
+  /* Icon stroke width for uniform appearance */
+  --icon-stroke-width: 1.5;
+
+  /* Icon corner radius for consistent rounded elements */
+  --icon-border-radius: 2px;
+}
+
+/* Dark theme adjustments */
+.dark {
+  --icon-color-default: #64748b; /* slate-500 */
+  --icon-color-active: #ffffff; /* white */
+  --icon-color-hover: #f1f5f9; /* slate-100 */
+}
+
+/* Sidebar icon theming */
+.sidebar-icon {
+  color: currentColor;
+  stroke-width: var(--icon-stroke-width, 1.5);
+  transition: color 0.2s ease-out;
+}
+
+/* We can remove the active and hover icon color overrides since they now use currentColor */
+.sidebar-nav-item-active .sidebar-icon {
+  color: currentColor;
+}
+
+.sidebar-nav-item:hover .sidebar-icon {
+  color: currentColor;
+}
+
+/* Prevent unwanted scrolling */
+.sidebar-no-scroll {
+  scroll-behavior: auto !important;
+}
+
+.main-content-no-scroll {
+  scroll-behavior: auto !important;
+}
+
+/* Custom animations for Get Started button */
+@keyframes glow {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(99, 102, 241, 0.5), 0 0 40px rgba(99, 102, 241, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 30px rgba(99, 102, 241, 0.8), 0 0 60px rgba(99, 102, 241, 0.5), 0 0 80px rgba(99, 102, 241, 0.3);
+  }
+}
+
+@keyframes techPulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.05);
+    opacity: 0.8;
+  }
+}
+
+@keyframes arrowBounce {
+  0%, 100% {
+    transform: translateX(0) translateY(-50%);
+  }
+  50% {
+    transform: translateX(-5px) translateY(-50%);
+  }
+}
+
+@keyframes lightning {
+  0%, 100% {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.2);
+  }
+}
+
+@keyframes particleFloat {
+  0%, 100% {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: translateY(-10px) scale(1.2);
+    opacity: 0.7;
+  }
+}
+
+/* Apply custom animations */
+.tech-glow {
+  animation: glow 3s ease-in-out infinite alternate;
+}
+
+.tech-pulse {
+  animation: techPulse 2s ease-in-out infinite;
+}
+
+.arrow-bounce {
+  animation: arrowBounce 1.5s ease-in-out infinite;
+}
+
+.lightning-effect {
+  animation: lightning 2s ease-in-out infinite;
+}
+
+.particle-float {
+  animation: particleFloat 3s ease-in-out infinite;
+}
+
+/* Preserve sidebar state */
+.sidebar-preserve-state {
+  scroll-behavior: auto !important;
+  overflow-anchor: none;
+}
+
+/* Smooth transitions for sidebar (avoid `all` — causes sticky/header glitches during width tween) */
+.sidebar-smooth {
+  transition: width 0.2s ease-in-out, transform 0.2s ease-in-out;
+}
+
+/* Prevent page jump on route change */
+.route-change-no-scroll {
+  scroll-behavior: auto !important;
+}
+
+/* Prevent body scroll on sidebar navigation */
+body.sidebar-navigation {
+  scroll-behavior: auto !important;
+  overflow-anchor: none;
+}
+
+/* Ensure sidebar is properly positioned on mobile */
+@media (max-width: 1023px) {
+  #sidebar {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    height: 100vh !important;
+    z-index: 50 !important;
+    /* Let JavaScript control the transform */
+  }
+}
+
+/* Prevent flashing on all crypto pages */
+.crypto-page {
+  scroll-behavior: auto !important;
+  overflow-anchor: none;
+  height: 100dvh !important;
+}
+
+.crypto-page .main-content {
+  scroll-behavior: auto !important;
+  transition: none !important;
+}
+
+.crypto-page .route-transition {
+  scroll-behavior: auto !important;
+  overflow-anchor: none;
+  height: 100% !important;
+  overflow-y: auto !important;
+}
+
+.crypto-page .page-content-smooth {
+  transition: opacity 0.2s ease-in-out;
+  scroll-behavior: auto !important;
+  min-height: 0 !important;
+  flex: 1 !important;
+  overflow-y: auto !important;
+}
+
+/* Smooth transitions for page content */
+.page-content-smooth {
+  transition: opacity 0.2s ease-in-out;
+}
+
+/* Prevent layout shift on route changes */
+.route-transition {
+  scroll-behavior: auto !important;
+  overflow-anchor: none;
+}
+
+/* Fix search modal z-index issues */
+.search-modal {
+  z-index: 9999 !important;
+}
+
+.search-modal-backdrop {
+  z-index: 9998 !important;
+}
+
+/* Ensure search modal doesn't interfere with page content */
+#search-modal {
+  z-index: 9999 !important;
+}
+
+#search-modal[aria-hidden="true"] {
+  display: none !important;
+}
+
+/* Ensure search modal doesn't appear on top of page content when closed */
+.search-modal-closed {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+}
+
+/* Fix any potential z-index conflicts */
+.modal-search-backdrop {
+  z-index: 9998 !important;
+}
+
+.modal-search-content {
+  z-index: 9999 !important;
+}
+
+/* On large screens, make sidebar always visible */
+@media (min-width: 1024px) {
+  #sidebar {
+    position: static !important;
+    transform: none !important;
+  }
+}
+
+/* Ensure sidebar doesn't get hidden on crypto pages */
+.crypto-page #sidebar {
+  display: flex !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+/* Prevent screen flashing on crypto page navigation */
+.crypto-page {
+  transition: none !important;
+}
+
+.crypto-page * {
+  transition: none !important;
+}
+
+/* Smooth transitions for crypto pages */
+.crypto-page .transition-all {
+  transition: all 0.2s ease-in-out !important;
+}
+
+/* Prevent layout shift on crypto pages */
+.crypto-page .flex {
+  display: flex !important;
+}
+
+.crypto-page .h-\[100dvh\] {
+  height: 100dvh !important;
+}
+
+/* Preserve scroll position for sidebar items */
+.sidebar-nav-item {
+  scroll-behavior: auto !important;
+}
+
+/* Prevent main content from jumping */
+.main-content-stable {
+  scroll-behavior: auto !important;
+  overflow-anchor: none;
+}
+
+/* Smooth sidebar transitions without scroll interference */
+.sidebar-transition {
+  transition: width 0.2s ease-in-out, transform 0.2s ease-in-out;
+  scroll-behavior: auto !important;
+}
+
+/* Smooth scrolling animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeInRight {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.animate-fade-in {
+  animation: fadeInUp 0.6s ease-out forwards;
+}
+
+.animate-fade-in-left {
+  animation: fadeInLeft 0.6s ease-out forwards;
+}
+
+.animate-fade-in-right {
+  animation: fadeInRight 0.6s ease-out forwards;
+}
+
+.animate-fade-in-simple {
+  animation: fadeIn 0.6s ease-out forwards;
+}
+
+/* Smooth scroll behavior */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Enhanced focus styles for accessibility */
+button:focus-visible,
+a:focus-visible {
+  outline: 2px solid var(--color-focus-ring);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Improved hover transitions */
+.transition-smooth {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Enterprise-grade color theme consistency (light defaults; dark overrides below only where needed) */
+:root {
+  /* Fonts */
+  --font-inter: 'Inter', sans-serif;
+  --font-lexend: 'Lexend', sans-serif;
+
+  /* Brand — aligned with dashboard accent (indigo) */
+  --color-primary: #4f46e5;
+  --color-primary-dark: #4338ca;
+  --color-primary-light: #6366f1;
+  --color-secondary: #64748b;
+  --color-accent: #d97706;
+  --color-success: #059669;
+  --color-warning: #d97706;
+  --color-error: #dc2626;
+
+  /* Surfaces */
+  --color-background: #ffffff;
+  --color-surface: #f8fafc;
+  --color-app-canvas: #f8fafc;
+  --color-elevated: #ffffff;
+
+  /* Text */
+  --color-text-primary: #0f172a;
+  --color-text-secondary: #475569;
+  --color-text-muted: #64748b;
+
+  /* Borders & focus */
+  --color-border: #e2e8f0;
+  --color-border-strong: #cbd5e1;
+  --color-divider: #f1f5f9;
+  --color-focus-ring: #4338ca;
+
+  --shadow-sm: 0 1px 2px 0 rgb(15 23 42 / 0.04);
+  --shadow-md: 0 4px 6px -1px rgb(15 23 42 / 0.06), 0 2px 4px -2px rgb(15 23 42 / 0.04);
+  --shadow-lg: 0 10px 15px -3px rgb(15 23 42 / 0.08), 0 4px 6px -4px rgb(15 23 42 / 0.04);
+  --shadow-xl: 0 20px 25px -5px rgb(15 23 42 / 0.08), 0 8px 10px -6px rgb(15 23 42 / 0.05);
+  --shadow-card-light: 0 1px 2px 0 rgb(15 23 42 / 0.05), 0 1px 3px 0 rgb(15 23 42 / 0.08);
+}
+
+/* Dark mode support */
+.dark {
+  --color-background: #0f172a;
+  --color-surface: #1e293b;
+  --color-app-canvas: #182235;
+  --color-elevated: #1e293b;
+  --color-text-primary: #f1f5f9;
+  --color-text-secondary: #94a3b8;
+  --color-text-muted: #94a3b8;
+  --color-border: #334155;
+  --color-border-strong: #475569;
+  --color-divider: #1e293b;
+  --color-focus-ring: #3b82f6;
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+}
+
+/*
+ * Light mode: default dashboard “cards” use Tailwind’s shadow-lg + thin border — soften elevation * so panels read as crisp SaaS surfaces on the canvas (dark theme unchanged).
+ */
+html:not(.dark) .bg-white.border-slate-200.shadow-lg {
+  box-shadow: var(--shadow-card-light);
+  border-color: rgb(226 232 240 / 0.92);
+  border-radius: 0.5rem;
+}
+
+/* Footer and layout fixes */
+
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Prevent extra space when scrolling */
+
+/* Ensure pages with min-h-screen work properly */
+
+/* Footer stays at bottom */
+.footer-sticky {
+  margin-top: auto;
+}
+
+/* Prevent endless scrolling with extra space */
+.page-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.page-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Prevent scrolling beyond footer */
+
+/* Ensure footer is the last element */
+footer {
+  position: relative;
+  z-index: 1;
+}
+
+/* Prevent extra space after footer */
+footer::after {
+  content: '';
+  display: block;
+  height: 0;
+  overflow: hidden;
+}
+
+/* Specific fix for contact page scrolling */
+.bg-gray-900 {
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* Ensure no extra space after footer */
+.bg-gray-900 footer:last-child {
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+/* Footer and layout fixes */
+html, body {
+  height: 100%;
+  overflow-x: hidden;
+}
+
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Prevent extra space when scrolling */
+body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+/* Ensure pages with min-h-screen work properly */
+.min-h-screen {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Footer stays at bottom */
+.footer-sticky {
+  margin-top: auto;
+}
+
+/* Page content takes remaining space */
+.page-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Fix for pages using h-[100dvh] - prevent endless scrolling */
+.h-\[100dvh\] {
+  height: 100vh !important;
+  max-height: 100vh !important;
+  overflow: hidden !important;
+}
+
+/* Ensure proper scrolling within h-[100dvh] containers */
+.h-\[100dvh\] .overflow-y-auto {
+  height: 100% !important;
+  overflow-y: auto !important;
+}
+
+/* Fix for flex layouts that might cause scrolling issues */
+.flex.h-screen {
+  height: 100vh !important;
+  max-height: 100vh !important;
+  overflow: hidden !important;
+}
+
+.flex.h-screen .overflow-y-auto {
+  height: 100% !important;
+  overflow-y: auto !important;
+}
+
+
+/* Ensure all page containers are properly constrained */
+div[class*="flex"][class*="h-screen"] {
+  height: 100vh !important;
+  max-height: 100vh !important;
+  overflow: hidden !important;
+}
+
+/* Simple fix for internal pages with h-screen - prevent endless scrolling */
+.flex.h-screen {
+  height: 100vh !important;
+  max-height: 100vh !important;
+  overflow: hidden !important;
+}
+
+/* Sidebar fills the column; inner panel scrolls (see Sidebar.jsx) */
+.flex.h-screen #sidebar {
+  height: 100vh !important;
+  max-height: 100vh !important;
+  overflow: hidden !important;
+}
+
+/* Allow main content to scroll within h-screen containers */
+.flex.h-screen .overflow-y-auto {
+  height: 100vh !important;
+  max-height: 100vh !important;
+  overflow-y: auto !important;
+}
+
+/* Prevent endless scrolling - only apply to pages with h-screen containers */
+.flex.h-screen {
+  position: relative;
+}
+
+
+/* Prevent any element from extending beyond the viewport */
+* {
+  box-sizing: border-box;
+}
+
+/* Homepage scrolling fix - override flex display that prevents scrolling */
+.bg-gray-900:not(.flex):not([class*="flex"]) {
+  display: block !important;
+  overflow-y: visible !important;
+}
+
+/* Guided tour cinematic enhancements */
+.guided-tour-glass-panel {
+  position: relative;
+  padding: 1.75rem 2.5rem;
+  border-radius: 28px;
+  background: linear-gradient(135deg, rgba(15, 23, 42, 0.85), rgba(59, 130, 246, 0.25));
+  border: 1px solid rgba(148, 163, 184, 0.3);
+  box-shadow: 0 20px 40px rgba(2, 6, 23, 0.65), inset 0 1px rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(18px);
+  overflow: hidden;
+}
+
+.countdown-bloom {
+  position: absolute;
+  inset: -40% auto auto -30%;
+  width: 320px;
+  height: 320px;
+  background: radial-gradient(circle, rgba(125, 211, 252, 0.6), transparent 70%);
+  filter: blur(40px);
+  opacity: 0.7;
+}
+
+.countdown-particle {
+  position: absolute;
+  top: -20px;
+  width: 6px;
+  height: 6px;
+  border-radius: 999px;
+  background: rgba(248, 250, 252, 0.8);
+  animation: countdownSpark 1.2s linear forwards;
+}
+
+@keyframes countdownSpark {
+  0% {
+    transform: translateY(0) scale(0.5);
+    opacity: 0;
+  }
+  50% {
+    opacity: 0.9;
+  }
+  100% {
+    transform: translateY(-80px) scale(0);
+    opacity: 0;
+  }
+}
+
+.guided-tour-pulse-ring {
+  position: absolute;
+  inset: -20%;
+  border-radius: 9999px;
+  border: 1px solid rgba(94, 234, 212, 0.5);
+  animation: guidedRing 1.8s ease-out infinite;
+}
+
+@keyframes guidedRing {
+  0% {
+    opacity: 0.8;
+    transform: scale(0.8);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1.4);
+  }
+}
+
+.guided-cursor {
+  position: relative;
+  width: 26px;
+  height: 26px;
+  transform: translate(-50%, -50%);
+}
+
+.guided-cursor-core {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 30% 30%, #fde68a, #fbbf24);
+  border-radius: 9999px;
+  box-shadow: 0 8px 20px rgba(251, 191, 36, 0.45);
+}
+
+.guided-cursor-shadow {
+  position: absolute;
+  inset: 5px;
+  border-radius: 9999px;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  filter: blur(2px);
+}
+
+.cinderella-bubble {
+  width: 240px;
+  border-radius: 24px;
+  padding: 1rem;
+  background: linear-gradient(145deg, rgba(15, 23, 42, 0.96), rgba(30, 64, 175, 0.9));
+  box-shadow: 0 16px 40px rgba(15, 23, 42, 0.6);
+  border: 1px solid rgba(56, 189, 248, 0.4);
+  color: #e5e7eb;
+}
+
+.cinderella-avatar {
+  position: relative;
+  width: 90px;
+  height: 90px;
+}
+
+.avatar-core {
+  position: absolute;
+  inset: 0;
+  border-radius: 9999px;
+  background: linear-gradient(135deg, #fcd34d, #f472b6);
+  box-shadow: 0 8px 20px rgba(248, 113, 113, 0.35);
+}
+
+.avatar-shadow {
+  position: absolute;
+  inset: 12px 14px 10px;
+  border-radius: 9999px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.85), rgba(248, 250, 252, 0.6));
+}
+
+.caret {
+  display: inline-block;
+  margin-left: 2px;
+  color: #475569;
+  transition: opacity 0.2s ease;
+}
+
+.cinderella-particles::before,
+.cinderella-particles::after {
+  content: '';
+  position: absolute;
+  width: 140px;
+  height: 140px;
+  top: -40px;
+  left: -40px;
+  border-radius: 9999px;
+  background: radial-gradient(circle, rgba(249, 168, 212, 0.3), transparent 60%);
+  animation: shimmerFloat 3s ease-in-out infinite;
+  pointer-events: none;
+}
+
+.cinderella-particles::after {
+  top: auto;
+  left: auto;
+  bottom: -30px;
+  right: -30px;
+  animation-delay: 1.2s;
+}
+
+@keyframes shimmerFloat {
+  0% {
+    transform: translateY(0);
+    opacity: 0.7;
+  }
+  50% {
+    transform: translateY(-8px);
+    opacity: 0.35;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 0.7;
+  }
+}
+
+.guided-music-toggle {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 150;
+  padding: 0.75rem 1.25rem;
+  border-radius: 9999px;
+  background: rgba(15, 23, 42, 0.7);
+  color: #f8fafc;
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  border: 1px solid rgba(148, 163, 184, 0.3);
+  box-shadow: 0 10px 25px rgba(2, 6, 23, 0.45);
+  backdrop-filter: blur(14px);
+}
+
+.guided-tour-sidebar-elastic {
+  animation: guidedSidebarElastic 0.9s cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+@keyframes guidedSidebarElastic {
+  0% {
+    transform: translateX(-40px);
+  }
+  60% {
+    transform: translateX(10px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+.guided-tour-link-glow {
+  position: relative;
+  color: #a5b4fc !important;
+  text-shadow: 0 0 12px rgba(99, 102, 241, 0.7);
+}
+
+.guided-tour-link-spotlight {
+  position: absolute;
+  inset: 0;
+  border-radius: 10px;
+  background: radial-gradient(circle, rgba(125, 211, 252, 0.4), transparent 70%);
+  filter: blur(8px);
+  animation: guidedLinkPulse 1.5s ease-in-out infinite;
+}
+
+@keyframes guidedLinkPulse {
+  0%,
+  100% {
+    opacity: 0.4;
+    transform: scale(0.95);
+  }
+  50% {
+    opacity: 0.8;
+    transform: scale(1.05);
+  }
+}
+
+.guided-tour-link-tooltip {
+  position: absolute;
+  top: 50%;
+  left: 110%;
+  transform: translateY(-50%);
+  background: rgba(15, 23, 42, 0.95);
+  color: #f8fafc;
+  padding: 0.4rem 0.75rem;
+  border-radius: 9999px;
+  font-size: 0.625rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  border: 1px solid rgba(148, 163, 184, 0.3);
+  box-shadow: 0 8px 20px rgba(2, 6, 23, 0.4);
+}
+
+/* Payment Page - ensure proper scrolling */
+.payment-page-wrapper {
+  display: block !important;
+  overflow-y: auto !important;
+  overflow-x: hidden !important;
+  min-height: 100vh;
+  height: auto !important;
+  max-height: none !important;
+}
+
+/* Logo carousel animation */
+@keyframes scroll-logos {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.logo-carousel {
+  display: flex;
+  gap: 4rem;
+  animation: scroll-logos 40s linear infinite;
+  will-change: transform;
+  width: fit-content;
+}
+
+.logo-carousel:hover {
+  animation-play-state: paused;
+}
+
+.logo-carousel-wrapper {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+}
+
+
+.logo-item {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  padding: 0 1rem;
+}
+
+.logo-item img {
+  filter: grayscale(0.3);
+  transition: all 0.3s ease;
+}
+
+.logo-item:hover img {
+  opacity: 1 !important;
+  transform: scale(1.15);
+  filter: grayscale(0);
+}
+
+@media (max-width: 640px) {
+  .logo-carousel {
+    gap: 2.5rem;
+  }
+  
+  .logo-carousel-wrapper::before,
+  .logo-carousel-wrapper::after {
+    width: 80px;
+  }
+}
+
+/* Crisp Chat Widget - Clean positioning */
+.crisp-client {
+  position: fixed !important;
+  bottom: 20px !important;
+  right: 20px !important;
+  z-index: 999999 !important;
+}
+
+.crisp-client .crisp-avatar {
+  width: 56px !important;
+  height: 56px !important;
+  border-radius: 50% !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15) !important;
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+  .crisp-client {
+    bottom: 16px !important;
+    right: 16px !important;
+  }
+
+  .crisp-client .crisp-avatar {
+    width: 50px !important;
+    height: 50px !important;
+  }
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+  .crisp-client {
+    right: calc(16px + env(safe-area-inset-right)) !important;
+    bottom: calc(16px + env(safe-area-inset-bottom)) !important;
+  }
+}
+
+/* Chat avatar styling */
+.crisp-client .crisp-avatar {
+  width: 56px !important;
+  height: 56px !important;
+  border-radius: 50% !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15) !important;
+  transition: all 0.3s ease !important;
+  transform: none !important;
+}
+
+.crisp-client .crisp-avatar:hover {
+  transform: scale(1.05) !important;
+  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.2) !important;
+}
+
+/* Mobile avatar adjustments */
+@media (max-width: 768px) {
+  .crisp-client .crisp-avatar {
+    width: 50px !important;
+    height: 50px !important;
+  }
+}
+
+/* Chat widget container */
+.crisp-client .crisp-chat-container {
+  border-radius: 16px !important;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15) !important;
+  max-height: 80vh !important;
+  transform: none !important;
+  zoom: 1 !important;
+  overflow: auto !important;
+}
+
+/* Global fixes to prevent viewport issues */
+html, body {
+  overflow-x: hidden !important;
+  transform: none !important;
+  zoom: 1 !important;
+}
+
+/* Ensure Crisp widget renders above all content */
+.crisp-client,
+.crisp-client *,
+.crisp-client::before,
+.crisp-client::after {
+  z-index: 999999 !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .crisp-client * {
+    transition: none !important;
+    animation: none !important;
+  }
+}
